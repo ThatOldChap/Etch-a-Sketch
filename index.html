@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<!-- Developed by Michael Chaplin -->
+<!-- April 20th, 2020 -->
+<head>
+    <meta charset="utf-8"/>
+</head>
+<style>
+    body, html {
+        height: 95%;
+        width: 95%;
+        background-color: #121212;
+    }
+    #content {
+        display: flex;
+        flex-direction: column;
+        height: 100%;
+        width: 100%;
+        margin-bottom: 20px;
+    }
+    #header-container {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        margin-bottom: 20px;
+    }
+    #sketch-frame {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100%;
+        width: 100%;
+    }
+    #sketch-container {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        width: 50%;
+        padding-bottom: 50%;
+        border: #FFFFFF solid 2px;
+    }
+    #reset-button {
+        padding: 0.5rem 0.5rem 0.5rem 0.5rem;
+        font-size: 1.25rem;
+        width: max-content;
+        background-color: #232323;
+        border-color: #565656;
+        color: #FFFFFF;
+        opacity: 0.6;
+    }
+    #title {
+        color: white;
+        padding: 0 0 0 0;
+        margin: 0 0 0 0;
+    }
+    #signature {
+        color: white;
+        padding: 0 0 0 0;
+        margin: 0 0 1rem 0;
+    }
+</style>
+
+<html>
+    <body>
+        <div id='content'>
+            <div id='header-container'>
+                <h1 id='title'>Etch-a-Sketch</h1>
+                <h6 id='signature'>By: Michael Chaplin</h6>
+                <button id='reset-button'>Clear Grid</button>
+            </div>
+            <div id='sketch-frame'>
+                <div id='sketch-container'></div>
+            </div>
+        </div>
+    </body>
+    <script>
+        // Creates the grid with the square elements
+        const gridContainer = document.querySelector('#sketch-container');
+
+        let gridSize = 16;
+        let gridWidth = gridContainer.clientWidth;
+        let gridHeight = gridContainer.clientHeight;
+        let gridItemWidth = (gridWidth/gridSize)-2;
+        let gridItemHeight = (gridWidth/gridSize)-2;
+
+        console.log(`width = ${gridWidth}px and height = ${gridHeight}px and item width/height is ${gridItemHeight}px`);
+
+        const gridRow = document.createElement('div');
+        gridRow.classList.add('grid-row');
+        gridRow.style.display = 'flex';
+        gridRow.style.flexDirection = 'row';
+        gridRow.style.height = `${gridItemHeight}px`;
+        gridRow.style.width = `${gridItemWidth}px`;
+
+        const gridItem = document.createElement('div');
+        gridItem.classList.add('grid-item');
+        gridItem.style.border = '1px solid #FFFFFF';
+        gridItem.style.height = `${gridItemHeight}px`;
+        gridItem.style.width = `${gridItemWidth}px`;
+
+        for(i = 0; i < gridSize; i++) {
+            const gridRow = document.createElement('div');
+            gridRow.className = 'grid-row';
+            gridRow.classList.add('grid-row');
+            gridRow.style.display = 'flex';
+            gridRow.style.flexDirection = 'row';
+            gridRow.style.height = `${gridItemHeight}px`;
+            gridRow.style.width = `${gridItemWidth}px`;
+            for(j = 0; j < gridSize; j++) {
+                const gridItem = document.createElement('div');
+                gridItem.classList.add('grid-item');
+                gridItem.style.border = '1px solid #FFFFFF';
+                gridItem.style.height = `${gridItemHeight}px`;
+                gridItem.style.width = `${gridItemWidth}px`;
+                gridRow.appendChild(gridItem);
+            }
+            gridContainer.appendChild(gridRow);
+        }
+        
+    </script>
+</html>
