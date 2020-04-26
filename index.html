@@ -6,8 +6,10 @@
 </head>
 <style>
     body, html {
-        height: 95%;
-        width: 95%;
+        height: 100%;
+        width: 100%;
+        padding: 0 0 0 0;
+        margin: 0 0 0 0;
         background-color: #121212;
     }
     #content {
@@ -15,28 +17,12 @@
         flex-direction: column;
         height: 100%;
         width: 100%;
-        margin-bottom: 20px;
     }
     #header-container {
         display: flex;
         flex-direction: column;
         align-items: center;
         margin-bottom: 20px;
-    }
-    #sketch-frame {
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        height: 100%;
-        width: 100%;
-    }
-    #sketch-container {
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        width: 50%;
-        padding-bottom: 50%;
-        border: #FFFFFF solid 2px;
     }
     #reset-button {
         padding: 0.5rem 0.5rem 0.5rem 0.5rem;
@@ -57,6 +43,29 @@
         padding: 0 0 0 0;
         margin: 0 0 1rem 0;
     }
+    #sketch-frame {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100%;
+        width: 100%;
+    }
+    #sketch-container {
+        display: flex;
+        flex-direction: column;
+        width: 500px;
+        height: 500px;
+        border: #FFFFFF solid 2px;
+    }
+    .grid-row {
+        flex: 0 1 100%;
+        display: flex;
+        flex-direction: row;
+    }
+    .grid-item {
+        flex: 0 1 100%;
+        border: #181818 solid 0.5px;
+    }
 </style>
 
 <html>
@@ -75,42 +84,15 @@
     <script>
         // Creates the grid with the square elements
         const gridContainer = document.querySelector('#sketch-container');
-
         let gridSize = 16;
-        let gridWidth = gridContainer.clientWidth;
-        let gridHeight = gridContainer.clientHeight;
-        let gridItemWidth = (gridWidth/gridSize)-2;
-        let gridItemHeight = (gridWidth/gridSize)-2;
 
-        console.log(`width = ${gridWidth}px and height = ${gridHeight}px and item width/height is ${gridItemHeight}px`);
-
-        const gridRow = document.createElement('div');
-        gridRow.classList.add('grid-row');
-        gridRow.style.display = 'flex';
-        gridRow.style.flexDirection = 'row';
-        gridRow.style.height = `${gridItemHeight}px`;
-        gridRow.style.width = `${gridItemWidth}px`;
-
-        const gridItem = document.createElement('div');
-        gridItem.classList.add('grid-item');
-        gridItem.style.border = '1px solid #FFFFFF';
-        gridItem.style.height = `${gridItemHeight}px`;
-        gridItem.style.width = `${gridItemWidth}px`;
-
-        for(i = 0; i < gridSize; i++) {
+        for (i = 0; i < gridSize; i++) {
             const gridRow = document.createElement('div');
             gridRow.className = 'grid-row';
-            gridRow.classList.add('grid-row');
-            gridRow.style.display = 'flex';
-            gridRow.style.flexDirection = 'row';
-            gridRow.style.height = `${gridItemHeight}px`;
-            gridRow.style.width = `${gridItemWidth}px`;
-            for(j = 0; j < gridSize; j++) {
+            
+            for (j = 0; j < gridSize; j++) {
                 const gridItem = document.createElement('div');
-                gridItem.classList.add('grid-item');
-                gridItem.style.border = '1px solid #FFFFFF';
-                gridItem.style.height = `${gridItemHeight}px`;
-                gridItem.style.width = `${gridItemWidth}px`;
+                gridItem.className = 'grid-item';
                 gridRow.appendChild(gridItem);
             }
             gridContainer.appendChild(gridRow);
