@@ -47,6 +47,7 @@
         width: 600px;
         flex-direction: row;
         align-content: stretch;
+        align-items: center;
     }
     #sketch-container {
         display: flex;
@@ -65,7 +66,7 @@
         border: #181818 solid 0.5px;
     }
     #grid-size, #reset-button, #color-list {
-        flex: 1 1 auto;
+        flex: 0 1 100%;
     }
     #grid-size {
         color: #FFFFFF;
@@ -193,22 +194,27 @@
                     const gridItem = document.createElement('div');
                     gridItem.className = 'grid-item';
                     gridRow.appendChild(gridItem);
+                    gridItem.id = `${i}${j}`;
 
                     gridItem.addEventListener("mouseover", function changeColor() {
-                        gridItem.style.backgroundColor = selectedColorID;
+
+                        gridItem.style.backgroundColor = selectedColor;
                     });
                 }
                 gridContainer.appendChild(gridRow);
             }
         }
     
+        function randColor() {
+            return `hsl(${Math.floor(Math.random()*360)}%, 100%, )`;
+        }
 
         for (let i = 0; i < colorPickers.length; i++) {
             colorPickers[i].addEventListener('click', (event) => {
                 selectedColorID = event.target.id;
                 switch (selectedColorID) {
                     case 'multi':
-                        selectedColor = '#TODO';
+                        selectedColor = 'multi';
                         break;
                     case 'white':
                         selectedColor = '#FFFFFF';
