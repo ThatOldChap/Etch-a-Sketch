@@ -141,6 +141,7 @@
 
 
         const colorPickers = document.getElementsByClassName('color-picker');
+        const gridSizeText = document.querySelector('#grid-size');
 
         // Creates the grid with the square elements
         const gridContainer = document.querySelector('#sketch-container');
@@ -215,6 +216,7 @@
                 }
                 gridContainer.appendChild(gridRow);
             }
+            gridSizeText.textContent = `Grid Size: ${gridSize}x${gridSize}`;
         }
     
         function randColor() {
