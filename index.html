@@ -197,8 +197,20 @@
                     gridItem.id = `${i}${j}`;
 
                     gridItem.addEventListener("mouseover", function changeColor() {
-
-                        gridItem.style.backgroundColor = selectedColor;
+                        if(selectedColorID == 'multi'){
+                            if(gridItem.style.opacity.length > 0){
+                                opacity = Number(gridItem.style.opacity);
+                                (opacity > 0) ? (opacity -= 0.1) : opacity = 0;
+                                gridItem.style.opacity = `${opacity}`;
+                            } else {
+                                gridItem.style.backgroundColor = `${randColor()}`;
+                                gridItem.style.opacity = `1`;
+                            }
+                        } else {
+                            gridItem.style.backgroundColor = selectedColor;
+                            gridItem.style.opacity = '1';
+                            console.log(`Color is ${selectedColor}`);
+                        }
                     });
                 }
                 gridContainer.appendChild(gridRow);
@@ -206,7 +218,7 @@
         }
     
         function randColor() {
-            return `hsl(${Math.floor(Math.random()*360)}%, 100%, )`;
+            return `hsl(${Math.floor(Math.random()*360)}, 100%, 50%)`;
         }
 
         for (let i = 0; i < colorPickers.length; i++) {
